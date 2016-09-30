@@ -5,30 +5,78 @@ import java.util.List;
 import org.sql2o.*;
 
 public class SightingTest {
-  Sighting testSighting;
-  Sighting testSighting2;
+  Sighting sight;
+  Sighting sight2;
 
   @Rule
-  public Database database = new DatabaseRule();
+  public DatabaseRule database = new DatabaseRule();
 
   @Before
   public void setUp() {
-    testSighting = new Sighting();
-    testSighting2 = new Sighting();
+    sight = new Sighting("Aragorn", "saw hobbits", "middle earth");
+    sight2 = new Sighting("Walker", "saw boots", "Texas");
   }
 
   @Test
-  public void object_instantiatesCorrectly_true() {
-    assertTrue(testSighting instanceof Sighting);
+  public void sight_instantiatesCorrectly_true() {
+    assertTrue(sight instanceof Sighting);
   }
 
   @Test
-  public void getName_personInstantiatesWithName_String() {
-    assertEquals("Henry", testPerson.getName());
+  public void getName_sightingInstantiatesWithName_String() {
+    assertEquals("Aragorn", sight.getName());
   }
 
   @Test
-  public void getNotes_personInstantiatesWithNotes_String() {
-    assertEquals("henry@henry.com", testPerson.getEmail());
+  public void getNotes_sightingInstantiatesWithNotes_String() {
+    assertEquals("saw hobbits", sight.getNotes());
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfSighting_true() {
+    sight.save();
+    sight2.save();
+    assertEquals(true, Sighting.all().get(1).equals(sight));
+    assertEquals(true, Sighting.all().get(2).equals(sight2));
+  }
+
+  // @Test
+  // public void getTimeSpotted_sightingInstantiatesWithTimeSpotted_String() {
+  //   assertEquals("henry@henry.com", sight.getEmail());
+  // }
+
+  @Test
+  public void getLocation_personInstantiatesWithLocation_String() {
+    assertEquals("middle earth", sight.getLocation());
+  }
+
+  @Test
+  public void save_assignsIdToSighting() {
+    sight.save();
+    sight2 = Sighting.all().get(0);
+    assertEquals(sight.getId(), sight2.getId());
+  }
+
+  @Test
+  public void save_insertsSightingIntoDatabase_true() {
+    sight.save();
+    try(Connection con = DB.sql2o.open()){
+      sight2 = con.createQuery("SELECT * FROM sightings WHERE ranger_names='Texas'")
+      .executeAndFetchFirst(Sighting.class);
+    }
+    assertTrue(sight2.equals(sight));
+  }
+
+  @Test
+  public void find_returnsPostWithSameId_secondPost() {
+    sight.save();
+    sight2.save();
+    assertEquals(Sighting.find(sight2.getId()), sight2);
+  }
+
+  @Test
+  public void equals_returnsTrueIfPropertiesAreSame_true() {
+    Sighting sight3 = new Sighting("Aragorn", "saw hobbits", "middle earth");
+    assertTrue(sight.equals(sight3));
   }
 }

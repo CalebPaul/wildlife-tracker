@@ -4,30 +4,30 @@ import org.sql2o.*;
 import java.text.DateFormat;
 import java.sql.Timestamp;
 
-public class Animal {
+public abstract class Animal {
   public String species;
-  public int id;
-  public int entry_id;
+  public int sighting_id;
+//  public int entry_id;
 
   public String getSpecies(){
     return species;
   }
 
   public int getId() {
-    return id;
+    return sighting_id;
   }
 
-  public int getEntryId() {
-    return entry_id;
-  }
+  // public int getEntryId() {
+  //   return entry_id;
+  // }
 
-  public String age() {
-    return age;
-  }
-
-  public String getStatus() {
-    return status;
-  }
+  // public String age() {
+  //   return age;
+  // }
+  //
+  // public String getStatus() {
+  //   return status;
+  // }
 
 
 }
