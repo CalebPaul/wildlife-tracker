@@ -4,15 +4,18 @@ import org.sql2o.*;
 import java.sql.Timestamp;
 
 public class Sighting {
+  private int id;
   private String ranger_name;
   private String notes;
   private Timestamp time_spotted;
-  private int id;
 
-
-  public Sighting(String name, String notes) {
-    this.name = name;
+  public Sighting(String ranger_name, String notes) {
+    this.ranger_name = ranger_name;
     this.notes = notes;
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getName() {
@@ -27,8 +30,6 @@ public class Sighting {
     return time_spotted;
   }
 
-  public int getId() {
-    return id;
-  }
+
 
 }

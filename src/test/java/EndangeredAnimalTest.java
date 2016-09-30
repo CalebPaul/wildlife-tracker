@@ -7,17 +7,17 @@ import java.util.Arrays;
 import java.time.LocalDateTime;
 
 public class EndangeredAnimal {
-  private EndangeredAnimal one;
-  private EndangeredAnimal two;
+  private EndangeredAnimal sabertooth;
+  private EndangeredAnimal jackelope;
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-  @Before //fix database name
+  @Before
   public void initialize() {
     DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", null, null);
-    one = new EndangeredAnimal(//add arguments);
-    two = new EndangeredAnimal(//add arguments);
+    sabertooth = new EndangeredAnimal(//add arguments);
+    jackelope = new EndangeredAnimal(//add arguments);
   }
 
   @Test //fix details
