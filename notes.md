@@ -13,7 +13,7 @@
 * Tests have complete coverage for all behaviors.
 * All tests are formatted correctly and pass.
 * Logic is easy to understand.
-* Build files are discluded from Git using a .gitignore file.
+* Build files are discluded from Git using a .gitignore file. DONE
 * Code and Git documentation follows best practices (descriptive variables names, proper indentation and spacing, separation between front and back-end logic, detailed commit messages in the correct tense, and a well-formatted README).
 
 

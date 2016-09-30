@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Arrays;
 import java.time.LocalDateTime;
 
-public class TwoClassTest {
-  private TwoClassTest one;
-  private TwoClassTest two;
+public class Animal {
+  private Animal one;
+  private Animal two;
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
@@ -16,8 +16,8 @@ public class TwoClassTest {
   @Before //fix database name
   public void initialize() {
     DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", null, null);
-    one = new TwoClassTest(//add arguments);
-    two = new TwoClassTest(//add arguments);
+    one = new Animal();//add arguments
+    two = new Animal();//add arguments
   }
 
   @Test //fix details
