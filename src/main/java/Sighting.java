@@ -8,8 +8,6 @@ public class Sighting {
   private String ranger_name;
   private String notes;
   private Timestamp time_spotted;
-  // private int safe_animal_ids;
-  // private int endangered_animal_ids;
   private String location;
 
   public Sighting(String ranger_name, String notes, String location) {
@@ -30,12 +28,25 @@ public class Sighting {
     return notes;
   }
 
-  public Timestamp getTimeSpotted() {
-    return time_spotted;
-  }
+  // public Timestamp getTimeSpotted() {
+  //   return time_spotted;
+  // }
 
   public String getLocation() {
     return location;
+  }
+
+  @Override
+  public boolean equals(Object otherSighting){
+    if (!(otherSighting instanceof Sighting)) {
+      return false;
+    } else {
+      Sighting newSighting = (Sighting) otherSighting;
+      return this.id  == newSighting.id &&
+             this.ranger_name.equals(newSighting.ranger_name) &&
+             this.notes.equals(newSighting.notes) &&
+             this.location.equals(newSighting.location);
+    }
   }
 
   public static List<Sighting> all() {
@@ -50,10 +61,10 @@ public class Sighting {
   public static Sighting find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM sightings where id=:id";
-      Sighting object = con.createQuery(sql)
+      Sighting sighting = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(Sighting.class);
-      return object;
+      return sighting;
     }
   }
 
@@ -66,19 +77,6 @@ public class Sighting {
                          .addParameter("location", this.location)
                          .executeUpdate()
                          .getKey();
-    }
-  }
-
-  @Override
-  public boolean equals(Object otherSighting){
-    if (!(otherSighting instanceof Sighting)) {
-      return false;
-    } else {
-      Sighting newSighting = (Sighting) otherSighting;
-      return this.id  == newSighting.id &&
-             this.ranger_name.equals(newSighting.ranger_name) &&
-             this.notes.equals(newSighting.notes) &&
-             this.location.equals(newSighting.location);
     }
   }
 

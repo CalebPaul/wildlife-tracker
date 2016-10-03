@@ -36,14 +36,11 @@ public class SightingTest {
   public void all_returnsAllInstancesOfSighting_true() {
     sight.save();
     sight2.save();
-    assertEquals(true, Sighting.all().get(1).equals(sight));
-    assertEquals(true, Sighting.all().get(2).equals(sight2));
+    System.out.println("all @ index 0 = " + Sighting.all().get(0));
+    System.out.println("all @ index 1 = " + Sighting.all().get(1));
+    assertEquals(true, Sighting.all().get(0).equals(sight));
+    assertEquals(true, Sighting.all().get(1).equals(sight2));
   }
-
-  // @Test
-  // public void getTimeSpotted_sightingInstantiatesWithTimeSpotted_String() {
-  //   assertEquals("henry@henry.com", sight.getEmail());
-  // }
 
   @Test
   public void getLocation_personInstantiatesWithLocation_String() {
@@ -53,17 +50,21 @@ public class SightingTest {
   @Test
   public void save_assignsIdToSighting() {
     sight.save();
+    System.out.println("saveIdTest = " + Sighting.all().get(0));
     sight2 = Sighting.all().get(0);
     assertEquals(sight.getId(), sight2.getId());
   }
 
   @Test
-  public void save_insertsSightingIntoDatabase_true() {
+  public void save_insertsSightingIntoDatabase_Sighting() {
     sight.save();
+    //Sighting sight3 = null;
     try(Connection con = DB.sql2o.open()){
-      sight2 = con.createQuery("SELECT * FROM sightings WHERE ranger_names='Texas'")
+      sight2 = con.createQuery("SELECT * FROM sightings WHERE ranger_names='Aragorn'")
       .executeAndFetchFirst(Sighting.class);
     }
+    System.out.println("saveDBInsertTest = " + Sighting.all().get(0));
+    System.out.println("saveDBInsertTest * = " + sight);
     assertTrue(sight2.equals(sight));
   }
 
