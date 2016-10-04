@@ -37,10 +37,15 @@ public class SafeAnimalTest {
     assertEquals(dog.getId(), cat.getId());
   }
 
-  // @Test
-  // public void save_insertsSafeAnimalIntoDB_true() {
-  //   dog.save;
-  // }
+  @Test
+  public void save_insertsSafeAnimalIntoDB_true() {
+    dog.save();
+    try(Connection con = DB.sql2o.open()) {
+      cat = con.createQuery("SELECT * FROM animals WHERE species='canine'")
+      .executeAndFetchFirst(SafeAnimal.class);
+    }
+    assertTrue(cat.equals(dog));
+  }
 
 
 }
