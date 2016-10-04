@@ -33,24 +33,21 @@ public class SightingTest {
   }
 
   @Test
-  public void all_returnsAllInstancesOfSighting_true() {
-    sight.save();
-    sight2.save();
-    System.out.println("all @ index 0 = " + Sighting.all().get(0).getName());
-    System.out.println("all @ index 1 = " + Sighting.all().get(1).getName());
-    assertEquals(true, Sighting.all().get(0).equals(sight));
-    assertEquals(true, Sighting.all().get(1).equals(sight2));
-  }
-
-  @Test
   public void getLocation_personInstantiatesWithLocations_String() {
     assertEquals("middle earth", sight.getLocation());
   }
 
   @Test
+  public void all_returnsAllInstancesOfSighting_true() {
+    sight.save();
+    sight2.save();
+    assertEquals(true, Sighting.all().get(0).equals(sight));
+    assertEquals(true, Sighting.all().get(1).equals(sight2));
+  }
+
+  @Test
   public void save_assignsIdToSighting() {
     sight.save();
-    System.out.println("saveIdTest = " + Sighting.all().get(0));
     sight2 = Sighting.all().get(0);
     assertEquals(sight.getId(), sight2.getId());
   }
@@ -58,13 +55,10 @@ public class SightingTest {
   @Test
   public void save_insertsSightingIntoDatabase_Sighting() {
     sight.save();
-    //Sighting sight3 = null;
     try(Connection con = DB.sql2o.open()){
       sight2 = con.createQuery("SELECT * FROM sightings WHERE ranger_names='Aragorn'")
       .executeAndFetchFirst(Sighting.class);
     }
-    System.out.println("saveDBInsertTest = " + Sighting.all().get(0));
-    System.out.println("saveDBInsertTest * = " + sight);
     assertTrue(sight2.equals(sight));
   }
 

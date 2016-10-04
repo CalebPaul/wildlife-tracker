@@ -28,9 +28,9 @@ public class Sighting {
     return notes;
   }
 
-  // public Timestamp getTimeSpotted() {
-  //   return times_spotted;
-  // }
+  public Timestamp getTimeSpotted() {
+    return times_spotted;
+  }
 
   public String getLocation() {
     return locations;

@@ -28,9 +28,10 @@ You have been asked to build an application that allows Rangers to track wildlif
 Due to their dwindling numbers, Rangers must record additional information about EndangeredAnimals:
 - id
 - name
-- health
 
+- health
 - Use constants to define options like "healthy", "ill", and "okay".
+
 - age (an estimated guess by the ranger)
 - Use constants to define options like "newborn", "young", or "adult".
 
