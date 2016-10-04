@@ -29,4 +29,25 @@ public class EndangeredAnimal extends Animal {
   public String age() {
     return age;
   }
+
+  public static List<EndangeredAnimal> all() {
+    String sql = "SELECT * FROM animals WHERE type='safe'";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+                .throwOnMappingFailure(false)
+                .executeAndFetch(EndangeredAnimal.class);
+    }
+  }
+
+  public static EndangeredAnimal find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals where id=:id";
+      EndangeredAnimal object = con.createQuery(sql)
+        .addParameter("id", id)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(EndangeredAnimal.class);
+      return object;
+    }
+  }
+
 }

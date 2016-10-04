@@ -10,6 +10,10 @@ public abstract class Animal {
   public int sighting_id;
   public int entry_id;
 
+  public int getId() {
+    return id;
+  }
+
   public String getSpecies(){
     return species;
   }
@@ -36,7 +40,7 @@ public abstract class Animal {
 
   public void save() {
   try(Connection con = DB.sql2o.open()) {
-    String sql = "INSERT INTO animals () VALUES ()";
+    String sql = "INSERT INTO animals (species, type, sighting_id, entry_id) VALUES (:species, :type, :sighting_id, :entry_id)";
     this.id = (int) con.createQuery(sql, true)
       .addParameter("species", this.species)
       .addParameter("type", this.type)

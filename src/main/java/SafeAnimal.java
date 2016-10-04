@@ -29,4 +29,25 @@ public class SafeAnimal extends Animal {
   public String age() {
     return age;
   }
+
+  public static List<SafeAnimal> all() {
+    String sql = "SELECT * FROM animals WHERE type='safe'";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+                .throwOnMappingFailure(false)
+                .executeAndFetch(SafeAnimal.class);
+    }
+  }
+
+  public static SafeAnimal find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals where id=:id";
+      SafeAnimal object = con.createQuery(sql)
+        .addParameter("id", id)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(SafeAnimal.class);
+      return object;
+    }
+  }
+
 }
