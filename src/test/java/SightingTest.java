@@ -36,14 +36,14 @@ public class SightingTest {
   public void all_returnsAllInstancesOfSighting_true() {
     sight.save();
     sight2.save();
-    System.out.println("all @ index 0 = " + Sighting.all().get(0));
-    System.out.println("all @ index 1 = " + Sighting.all().get(1));
+    System.out.println("all @ index 0 = " + Sighting.all().get(0).getName());
+    System.out.println("all @ index 1 = " + Sighting.all().get(1).getName());
     assertEquals(true, Sighting.all().get(0).equals(sight));
     assertEquals(true, Sighting.all().get(1).equals(sight2));
   }
 
   @Test
-  public void getLocation_personInstantiatesWithLocation_String() {
+  public void getLocation_personInstantiatesWithLocations_String() {
     assertEquals("middle earth", sight.getLocation());
   }
 
@@ -80,4 +80,4 @@ public class SightingTest {
     Sighting sight3 = new Sighting("Aragorn", "saw hobbits", "middle earth");
     assertTrue(sight.equals(sight3));
   }
-}
+ }

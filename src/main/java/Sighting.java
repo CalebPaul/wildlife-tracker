@@ -5,15 +5,15 @@ import java.sql.Timestamp;
 
 public class Sighting {
   private int id;
-  private String ranger_name;
+  private String ranger_names;
   private String notes;
-  private Timestamp time_spotted;
-  private String location;
+  private Timestamp times_spotted;
+  private String locations;
 
-  public Sighting(String ranger_name, String notes, String location) {
-    this.ranger_name = ranger_name;
+  public Sighting(String ranger_names, String notes, String locations) {
+    this.ranger_names = ranger_names;
     this.notes = notes;
-    this.location = location;
+    this.locations = locations;
   }
 
   public int getId() {
@@ -21,7 +21,7 @@ public class Sighting {
   }
 
   public String getName() {
-    return ranger_name;
+    return ranger_names;
   }
 
   public String getNotes() {
@@ -29,11 +29,11 @@ public class Sighting {
   }
 
   // public Timestamp getTimeSpotted() {
-  //   return time_spotted;
+  //   return times_spotted;
   // }
 
   public String getLocation() {
-    return location;
+    return locations;
   }
 
   @Override
@@ -43,9 +43,9 @@ public class Sighting {
     } else {
       Sighting newSighting = (Sighting) otherSighting;
       return this.id  == newSighting.id &&
-             this.ranger_name.equals(newSighting.ranger_name) &&
+             this.ranger_names.equals(newSighting.ranger_names) &&
              this.notes.equals(newSighting.notes) &&
-             this.location.equals(newSighting.location);
+             this.locations.equals(newSighting.locations);
     }
   }
 
@@ -53,7 +53,7 @@ public class Sighting {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM sightings";
       return con.createQuery(sql)
-                .throwOnMappingFailure(false)
+                //.throwOnMappingFailure(false)
                 .executeAndFetch(Sighting.class);
     }
   }
@@ -63,6 +63,7 @@ public class Sighting {
       String sql = "SELECT * FROM sightings where id=:id";
       Sighting sighting = con.createQuery(sql)
         .addParameter("id", id)
+      //  .throwOnMappingFailure(false)
         .executeAndFetchFirst(Sighting.class);
       return sighting;
     }
@@ -70,11 +71,12 @@ public class Sighting {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (ranger_names, notes, times_spotted, locations) VALUES (:ranger_name, :notes, now(), :location)";
+      String sql = "INSERT INTO sightings (ranger_names, notes, times_spotted, locations) VALUES (:ranger_names, :notes, now(), :locations)";
       this.id = (int) con.createQuery(sql, true)
-                         .addParameter("ranger_name", this.ranger_name)
+                         .addParameter("ranger_names", this.ranger_names)
                          .addParameter("notes", this.notes)
-                         .addParameter("location", this.location)
+                         .addParameter("locations", this.locations)
+                         //.throwOnMappingFailure(false)
                          .executeUpdate()
                          .getKey();
     }
