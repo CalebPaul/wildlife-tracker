@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.time.LocalDateTime;
 
 public class EndangeredAnimalTest {
-  private Animal sabertooth;
-  private Animal jackelope;
+  private EndangeredAnimal sabertooth;
+  private EndangeredAnimal jackelope;
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
