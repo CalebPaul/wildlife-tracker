@@ -26,7 +26,7 @@ public class SafeAnimalTest {
   }
 
   @Test
-  public void getName_instantiatesCorrectlyWithSpecies_String() {
+  public void getSpecies_instantiatesCorrectlyWithSpecies_String() {
     assertEquals("canine", dog.getSpecies());
   }
 
