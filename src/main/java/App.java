@@ -12,15 +12,28 @@ public class App {
     //Home Page
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
-      //populate w model and logic
+      model.put("sightings", Sighting.all());
+      model.put("safe", SafeAnimal.all());
+      model.put("endangered", EndangeredAnimal.all());
+      model.put("AnimalClass", Animal.class);
+      model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/", (request, response) -> {
+    post("/sighting/new", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
-      //populate w model and logic
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
+      String threat = new String(request.queryParams("threat"));
+      if (threat.equals('yes')) {
+        //do some stuff
+      } else if () {
+        //do some other stuff
+      } else {
+        //catch exception
+      }
+
+      response.redirect("/");
+      return null;
+    });
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<>();

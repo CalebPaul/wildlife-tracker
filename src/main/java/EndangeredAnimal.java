@@ -12,7 +12,7 @@ public class EndangeredAnimal extends Animal {
   public static final String STATUS_HEALTHY = "healthy";
   public static final String STATUS_ILL = "ill";
   public static final String STATUS_OKAY = "okay";
-  
+
   public static final String AGE_NEWBORN = "newborn";
   public static final String AGE_YOUNG = "young";
   public static final String AGE_ADULT = "adult";
@@ -21,6 +21,8 @@ public class EndangeredAnimal extends Animal {
     this.species = species;
     this.entry_id = entry_id;
     this.type = TYPE_ENDANGERED;
+    this.status = status;
+    this.age = age;
   }
 
   public String getStatus() {
@@ -29,6 +31,19 @@ public class EndangeredAnimal extends Animal {
 
   public String age() {
     return age;
+  }
+
+
+  public void setAge(String age) {
+    // if () {
+    //
+    // }
+  }
+
+  public void setHealth(String health) {
+    // if () {
+    //
+    // }
   }
 
   public static List<EndangeredAnimal> all() {

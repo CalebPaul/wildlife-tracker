@@ -1,0 +1,50 @@
+
+
+<div class="row">
+  <div class="col-md-5 offset-1">
+    <h3>Add Sighting:</h3>
+    <div class="form">
+      <form action="/sighting/new" method="post">
+        <div class="form-group">
+          <label for="species">Species</label>
+          <input class="form-control" type="text" name="species">
+        </div>
+        <div class="form-group">
+          <label for="locations">Location</label>
+          <input class="form-control" type="text" name="locations">
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <input class="form-control" type="text" name="notes">
+        </div>
+
+        <div class="form-group">
+          <label for="threat">Endangered Species?</label>
+          <input class="form-control" type="text" name="threat" placeholder="enter 'yes' or 'no'">
+        </div>
+        <div class="form-group">
+          <label for="status">Approximate Health (if endangered)</label>
+          <input class="form-control" type="text" name="status" placeholder="enter 'healthy', 'ill' or 'ok'">
+        </div>
+        <div class="form-group">
+          <label for="age">Approximate Age (if endangered)</label>
+          <input class="form-control" type="text" name="age" placeholder="enter 'newborn', 'young' or 'adult'">
+        </div>
+        <button class="btn btn-danger" type="submit">Add Sighting</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <h3>Recorded Animal Sightings:</h3>
+    #if($sightings.size() > 0)
+      <ul>
+        #foreach($sighting in $sightings)
+          <li><h4><a href="#"></a>$sighting.getName() at $sighting.getLocation()</h4></li>
+        #end
+      </ul>
+
+    #else
+      <h5>No Sightings</h5>
+    #end
+  </div>
+</div>

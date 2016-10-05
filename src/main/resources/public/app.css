@@ -1,0 +1,23 @@
+.container {
+  width: 85%;
+}
+
+.header {
+  width: 85%;
+  padding: 5px;
+  background-color: darkgreen;
+  color: white;
+}
+
+.col-md-6 {
+  padding: 5px;
+}
+
+.btn {
+  padding: 5px;
+  margin: 5px;
+}
+
+body {
+  background-color: lightgreen;
+}
