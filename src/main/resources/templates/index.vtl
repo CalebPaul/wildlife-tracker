@@ -47,8 +47,12 @@
           <li><h4><strong>Location: </strong> $sighting.getLocation()</h4></li>
             <ul>
               #if($safe.size() > 0)
-              <!-- Write method to get animals from specific sighting -->
+              <li>in safe if statement</li>
                 <li><h5><strong>Animal Spotted: </strong>$safe.getSpecies() $endangered.getSpecies()</h5></li>
+              #end
+              #if($endangered.size() > 0)
+              <li>in endangered if statement</li>
+                #thing_to_do
               #end
             </ul>
 

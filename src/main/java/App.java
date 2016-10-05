@@ -15,7 +15,7 @@ public class App {
       model.put("sightings", Sighting.all());
       model.put("safe", SafeAnimal.all());
       model.put("endangered", EndangeredAnimal.all());
-      model.put("animals", Animal.class);
+      //model.put("animals", Animal.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -32,7 +32,7 @@ public class App {
 
       if ( (ranger_name.equals("") || species.equals("") || location.equals("") || notes.equals("") || threat.equals("")) ||
           ( (threat.equals("yes")) && (status.equals("") || age.equals(""))) ) {
-        response.redirect("/alert");
+        response.redirect("/alert"); //replace with try and catch
       } if (threat.equals("yes")) {
             Sighting newSighting = new Sighting(ranger_name, notes, location);
             newSighting.save();
