@@ -26,8 +26,25 @@ public class EndangeredAnimalTest {
   }
 
   @Test
-  public void getName_instantiatesCorrectlyWithName_String() {
+  public void getSpecies_instantiatesCorrectlyWithSpecies_String() {
     assertEquals("tiger", sabertooth.getSpecies());
+  }
+
+  @Test
+  public void save_assignsIdToEndangeredAnimal() {
+    sabertooth.save();
+    jackelope = EndangeredAnimal.all().get(0);
+    assertEquals(sabertooth.getId(), jackelope.getId());
+  }
+
+  @Test
+  public void save_insertsEndangeredAnimalIntoDB_true() {
+    sabertooth.save();
+    try(Connection con = DB.sql2o.open()) {
+      jackelope = con.createQuery("SELECT * FROM animals WHERE species='tiger'")
+      .executeAndFetchFirst(EndangeredAnimal.class);
+    }
+    assertTrue(jackelope.equals(sabertooth));
   }
 
 }
