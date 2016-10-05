@@ -36,10 +36,10 @@ public class App {
       } if (threat.equals("yes")) {
             Sighting newSighting = new Sighting(ranger_name, notes, location);
             newSighting.save();
-            Animal newAnimal = new EndangeredAnimal(species, newSighting.getId());
-            // newAnimal.setAge();
-            // newAnimal.setHealth();
+            EndangeredAnimal newAnimal = new EndangeredAnimal(species, newSighting.getId());
             newAnimal.save();
+            newAnimal.setAge(age);
+            newAnimal.setStatus(status);
           } if (threat.equals("no")) {
             Sighting newSighting = new Sighting(ranger_name, notes, location);
             newSighting.save();
