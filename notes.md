@@ -1,29 +1,20 @@
 ## Your independent project this week will be evaluated on the following criteria:
-* An interface or inherited class provides similar content in different classes.
-* Database timestamps are included for each sighting.
+* An interface or inherited class provides similar content in different classes. DONE
+* Database timestamps are included for each sighting. DONE
 * At least two Exceptions can be thrown and caught.
-* Constants are used in at least one class.
+* Constants are used in at least one class. DONE
 * Previous standards are met (see below).
 * Project demonstrates an understanding of concepts covered this week. You can discuss your code and concepts behind it with an instructor using the correct terminology.
 * Project is in a polished, portfolio-ready state.
 * Application works as expected.
-
-## Previous Objectives
-* For reference, here are the previous weeks' objectives:
-* Tests have complete coverage for all behaviors.
-* All tests are formatted correctly and pass.
-* Logic is easy to understand.
-* Build files are discluded from Git using a .gitignore file. DONE
-* Code and Git documentation follows best practices (descriptive variables names, proper indentation and spacing, separation between front and back-end logic, detailed commit messages in the correct tense, and a well-formatted README).
-
 
 # Wildlife Tracker
 You have been asked to build an application that allows Rangers to track wildlife sightings in the area.
 ## The application must track two categories of wildlife:
 ### Animals
 ### At the very least, require:
-- id
-- name
+- id DONE
+- name DONE
 ### Endangered Animals
 Due to their dwindling numbers, Rangers must record additional information about EndangeredAnimals:
 - id
