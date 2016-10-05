@@ -6,7 +6,11 @@
     <div class="form">
       <form action="/sighting/new" method="post">
         <div class="form-group">
-          <label for="species">Species</label>
+          <label for="ranger_name">Ranger Name</label>
+          <input class="form-control" type="text" name="ranger_name">
+        </div>
+        <div class="form-group">
+          <label for="species">Species Spotted</label>
           <input class="form-control" type="text" name="species">
         </div>
         <div class="form-group">
@@ -39,12 +43,17 @@
     #if($sightings.size() > 0)
       <ul>
         #foreach($sighting in $sightings)
-          <li><h4><a href="#"></a>$sighting.getName() at $sighting.getLocation()</h4></li>
+          <li><h4><strong>Ranger Name: </strong>$sighting.getName()</h4></li>
+          <li><h4><strong>Location: </strong> $sighting.getLocation()</h4></li>
+          <li><h5><strong>Animal Spotted: </strong>$safe.getSpecies() $endangered.getSpecies()</h5></li>
+          <li><h5>Time Spotted: $sighting.getTimeSpotted()</h5></li>
         #end
       </ul>
 
     #else
       <h5>No Sightings</h5>
     #end
+
+
   </div>
 </div>

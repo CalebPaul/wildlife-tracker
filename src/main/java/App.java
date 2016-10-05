@@ -15,42 +15,59 @@ public class App {
       model.put("sightings", Sighting.all());
       model.put("safe", SafeAnimal.all());
       model.put("endangered", EndangeredAnimal.all());
-      model.put("AnimalClass", Animal.class);
+      model.put("animals", Animal.class);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
     post("/sighting/new", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
-      String threat = new String(request.queryParams("threat"));
-      if (threat.equals('yes')) {
-        //do some stuff
-      } else if () {
-        //do some other stuff
-      } else {
-        //catch exception
-      }
+      String ranger_name = request.queryParams("ranger_name");
+      String species = request.queryParams("species");
+      String location = request.queryParams("locations");
+      String notes = request.queryParams("notes");
+      String threat = request.queryParams("threat");
+      String status = request.queryParams("status");
+      String age = request.queryParams("age");
+
+      if ( (ranger_name.equals("") || species.equals("") || location.equals("") || notes.equals("") || threat.equals("")) ||
+          ( (threat.equals("yes")) && (status.equals("") || age.equals(""))) ) {
+        response.redirect("/alert");
+      } else if (threat.equals("yes")) {
+            Sighting newSighting = new Sighting(ranger_name, notes, location);
+            newSighting.save();
+            Animal newAnimal = new EndangeredAnimal(species, newSighting.getId());
+            // newAnimal.setAge();
+            // newAnimal.setHealth();
+            newAnimal.save();
+          } else if (threat.equals("no")) {
+            Sighting newSighting = new Sighting(ranger_name, notes, location);
+            newSighting.save();
+            Animal newAnimal = new SafeAnimal(species, newSighting.getId());
+            newAnimal.save();
+          }
 
       response.redirect("/");
-      return null;
-    });
-
-    get("/", (request, response) -> {
-      Map<String, Object> model = new HashMap<>();
-      //populate w model and logic
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/", (request, response) -> {
+    get("/alert", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       //populate w model and logic
+      response.redirect("/");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/", (request, response) -> {
-      Map<String, Object> model = new HashMap<>();
-      //populate w model and logic
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
+    // get("/", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<>();
+    //   //populate w model and logic
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
+    //
+    // get("/", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<>();
+    //   //populate w model and logic
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
   }
 }

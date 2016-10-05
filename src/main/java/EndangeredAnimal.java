@@ -40,7 +40,7 @@ public class EndangeredAnimal extends Animal {
     // }
   }
 
-  public void setHealth(String health) {
+  public void setStatus(String status) {
     // if () {
     //
     // }

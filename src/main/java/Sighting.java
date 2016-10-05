@@ -28,12 +28,19 @@ public class Sighting {
     return notes;
   }
 
-  public Timestamp getTimeSpotted() {
-    return times_spotted;
-  }
-
   public String getLocation() {
     return locations;
+  }
+
+//refactor
+  public Object getTimeSpotted() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT times_spotted FROM sightings WHERE id=:id";
+      Object time = con.createQuery(sql)
+                          .addParameter("id", id)
+                          .executeAndFetchFirst(Sighting.class);
+      return time;
+    }
   }
 
   @Override
