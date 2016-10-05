@@ -29,26 +29,34 @@ public class EndangeredAnimal extends Animal {
     return status;
   }
 
-  public String age() {
+  public String getAge() {
     return age;
   }
 
-
   public void setAge(String age) {
-    // if () {
-    //
-    // }
+    this.age = age;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE endangered_animals SET age = :age WHERE id=:id";
+      con.createQuery(sql)
+         .addParameter("age", age)
+         .addParameter("id", id)
+         .executeUpdate();
+    }
   }
 
   public void setStatus(String status) {
-    // if () {
-    //
-    // }
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE endangered_animals SET status = :health_statuses WHERE id=:id";
+      con.createQuery(sql)
+         .addParameter("status", status)
+         .addParameter("id", id)
+         .executeUpdate();
+    }
   }
 
   public static List<EndangeredAnimal> all() {
-    String sql = "SELECT * FROM animals WHERE type='endangered'";
     try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE type='endangered'";
       return con.createQuery(sql)
                 .throwOnMappingFailure(false)
                 .executeAndFetch(EndangeredAnimal.class);

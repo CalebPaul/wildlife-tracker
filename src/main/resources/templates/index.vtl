@@ -41,12 +41,21 @@
   <div class="col-md-5">
     <h3>Recorded Animal Sightings:</h3>
     #if($sightings.size() > 0)
-      <ul>
+      <ul class="scroll">
         #foreach($sighting in $sightings)
           <li><h4><strong>Ranger Name: </strong>$sighting.getName()</h4></li>
           <li><h4><strong>Location: </strong> $sighting.getLocation()</h4></li>
-          <li><h5><strong>Animal Spotted: </strong>$safe.getSpecies() $endangered.getSpecies()</h5></li>
-          <li><h5>Time Spotted: $sighting.getTimeSpotted()</h5></li>
+            <ul>
+              #if($safe.size() > 0)
+              <!-- Write method to get animals from specific sighting -->
+                <li><h5><strong>Animal Spotted: </strong>$safe.getSpecies() $endangered.getSpecies()</h5></li>
+              #end
+            </ul>
+
+
+          <!-- <li><h5>Time Spotted: $sighting.getTimeSpotted()</h5></li> -->
+          <!-- maybe select entire sighting and then use getter for timestamp? -->
+          <li>------------------------------------------</li>
         #end
       </ul>
 

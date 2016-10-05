@@ -32,7 +32,7 @@ _Rangers can add, delete, and update info (location, age, health, time spotted) 
 	  `psql wildlife_tracker < media.sql`
 
 * Type in terminal:
-	`\c hair_salon`
+	`\c wildlife_tracker`
 
 * Type in terminal:
 	  `gradle run`

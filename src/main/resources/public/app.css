@@ -2,6 +2,11 @@
   width: 85%;
 }
 
+.well {
+  width: 85;
+  background-color: darkgreen;
+}
+
 .header {
   width: 85%;
   padding: 5px;
@@ -18,6 +23,14 @@
   margin: 5px;
 }
 
+.scroll {
+  overflow-y: scroll;
+}
+
 body {
   background-color: lightgreen;
+}
+
+ul {
+  list-style-type: none;
 }

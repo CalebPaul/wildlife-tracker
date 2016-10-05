@@ -33,14 +33,14 @@ public class App {
       if ( (ranger_name.equals("") || species.equals("") || location.equals("") || notes.equals("") || threat.equals("")) ||
           ( (threat.equals("yes")) && (status.equals("") || age.equals(""))) ) {
         response.redirect("/alert");
-      } else if (threat.equals("yes")) {
+      } if (threat.equals("yes")) {
             Sighting newSighting = new Sighting(ranger_name, notes, location);
             newSighting.save();
             Animal newAnimal = new EndangeredAnimal(species, newSighting.getId());
             // newAnimal.setAge();
             // newAnimal.setHealth();
             newAnimal.save();
-          } else if (threat.equals("no")) {
+          } if (threat.equals("no")) {
             Sighting newSighting = new Sighting(ranger_name, notes, location);
             newSighting.save();
             Animal newAnimal = new SafeAnimal(species, newSighting.getId());

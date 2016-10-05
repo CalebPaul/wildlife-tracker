@@ -26,6 +26,10 @@ public abstract class Animal {
     return entry_id;
   }
 
+  public String getType() {
+    return type;
+  }
+
   @Override
   public boolean equals(Object otherAnimal){
     if (!(otherAnimal instanceof Animal)) {

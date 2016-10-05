@@ -26,6 +26,11 @@ public class EndangeredAnimalTest {
   }
 
   @Test
+  public void EndangeredAnimal_instatiantesWithStatusEndangered_true() {
+    assertEquals("endangered", sabertooth.getType());
+  }
+
+  @Test
   public void getSpecies_instantiatesCorrectlyWithSpecies_String() {
     assertEquals("tiger", sabertooth.getSpecies());
   }
@@ -45,6 +50,13 @@ public class EndangeredAnimalTest {
       .executeAndFetchFirst(EndangeredAnimal.class);
     }
     assertTrue(jackelope.equals(sabertooth));
+  }
+
+  @Test
+  public void setAge_assignsAgeToProperty_string() {
+    sabertooth.save();
+    sabertooth.setAge("young");
+    assertEquals("young", sabertooth.getAge());
   }
 
 }
