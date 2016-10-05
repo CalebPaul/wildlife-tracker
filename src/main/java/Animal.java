@@ -8,7 +8,6 @@ public abstract class Animal {
   public String species;
   public String type;
   public int sighting_id;
-  public int entry_id;
 
   public int getId() {
     return id;
@@ -22,10 +21,6 @@ public abstract class Animal {
     return sighting_id;
   }
 
-  public int getEntryId() {
-    return entry_id;
-  }
-
   public String getType() {
     return type;
   }
@@ -37,32 +32,23 @@ public abstract class Animal {
     } else {
       Animal newAnimal = (Animal) otherAnimal;
       return this.species.equals(newAnimal.species) &&
-             this.sighting_id == newAnimal.sighting_id &&
-             this.entry_id == newAnimal.entry_id;
+             this.sighting_id == newAnimal.sighting_id;
     }
   }
 
-  // public static List<Animal> all() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM animals";
-  //     return con.createQuery(sql)
-  //               //.throwOnMappingFailure(false)
-  //               .executeAndFetch(Animal.class);
-  //   }
-  // }
-
   public void save() {
   try(Connection con = DB.sql2o.open()) {
-    String sql = "INSERT INTO animals (species, type, sighting_id, entry_id) VALUES (:species, :type, :sighting_id, :entry_id)";
+    String sql = "INSERT INTO animals (species, type, sighting_id) VALUES (:species, :type, :sighting_id)";
     this.id = (int) con.createQuery(sql, true)
       .addParameter("species", this.species)
       .addParameter("type", this.type)
       .addParameter("sighting_id", this.sighting_id)
-      .addParameter("entry_id", this.entry_id)
       .executeUpdate()
       .getKey();
     }
   }
+
+  //try and catch for setting type
 
 
 }

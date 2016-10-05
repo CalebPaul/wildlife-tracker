@@ -17,9 +17,8 @@ public class EndangeredAnimal extends Animal {
   public static final String AGE_YOUNG = "young";
   public static final String AGE_ADULT = "adult";
 
-  public EndangeredAnimal(String species, int entry_id) {
+  public EndangeredAnimal(String species, int sighting_id) {
     this.species = species;
-    this.entry_id = entry_id;
     this.type = TYPE_ENDANGERED;
     this.status = status;
     this.age = age;
@@ -36,7 +35,7 @@ public class EndangeredAnimal extends Animal {
   public void setAge(String age) {
     this.age = age;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE endangered_animals SET ages = :age WHERE id=:id";
+      String sql = "UPDATE animals SET age = :age WHERE id=:id";
       con.createQuery(sql)
          .addParameter("age", age)
          .addParameter("id", id)
@@ -47,7 +46,7 @@ public class EndangeredAnimal extends Animal {
   public void setStatus(String status) {
     this.status = status;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE endangered_animals SET health_statuses = :status WHERE id=:id";
+      String sql = "UPDATE animals SET status = :status WHERE id=:id";
       con.createQuery(sql)
          .addParameter("status", status)
          .addParameter("id", id)

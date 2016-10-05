@@ -9,9 +9,8 @@ public class SafeAnimal extends Animal {
 
   public static final String TYPE_SAFE = "safe";
 
-  public SafeAnimal(String species, int entry_id) {
+  public SafeAnimal(String species, int sighting_id) {
     this.species = species;
-    this.entry_id = entry_id;
     this.type = TYPE_SAFE;
   }
 

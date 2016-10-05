@@ -32,7 +32,7 @@ public class Sighting {
     return locations;
   }
 
-//refactor
+//refactor?
   public Object getTimeSpotted() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT times_spotted FROM sightings WHERE id=:id";
