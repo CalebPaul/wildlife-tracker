@@ -59,4 +59,11 @@ public class EndangeredAnimalTest {
     assertEquals("young", sabertooth.getAge());
   }
 
+  @Test
+  public void setStatus_assignsStatusToProperty_string() {
+    sabertooth.save();
+    sabertooth.setStatus("healthy");
+    assertEquals("healthy", sabertooth.getStatus());
+  }
+
 }

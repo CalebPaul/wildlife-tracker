@@ -44,16 +44,16 @@ public class EndangeredAnimal extends Animal {
     }
   }
 
-  // public void setStatus(String status) {
-  //   this.status = status;
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "UPDATE endangered_animals SET status = :health_statuses WHERE id=:id";
-  //     con.createQuery(sql)
-  //        .addParameter("status", status)
-  //        .addParameter("id", id)
-  //        .executeUpdate();
-  //   }
-  // }
+  public void setStatus(String status) {
+    this.status = status;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE endangered_animals SET health_statuses = :status WHERE id=:id";
+      con.createQuery(sql)
+         .addParameter("status", status)
+         .addParameter("id", id)
+         .executeUpdate();
+    }
+  }
 
   public static List<EndangeredAnimal> all() {
     try(Connection con = DB.sql2o.open()) {
