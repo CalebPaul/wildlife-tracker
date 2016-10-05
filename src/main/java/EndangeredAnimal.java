@@ -4,8 +4,8 @@ import org.sql2o.*;
 import java.sql.Timestamp;
 
 public class EndangeredAnimal extends Animal {
-  public String status;
-  public String age;
+  private String status;
+  private String age;
 
   public static final String TYPE_ENDANGERED = "endangered";
 
@@ -45,6 +45,7 @@ public class EndangeredAnimal extends Animal {
   }
 
   // public void setStatus(String status) {
+  //   this.status = status;
   //   try(Connection con = DB.sql2o.open()) {
   //     String sql = "UPDATE endangered_animals SET status = :health_statuses WHERE id=:id";
   //     con.createQuery(sql)
