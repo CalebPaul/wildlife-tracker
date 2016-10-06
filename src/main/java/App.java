@@ -20,6 +20,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //post page, redirects to homepage
     post("/sighting/new", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       String ranger_name = request.queryParams("ranger_name");
@@ -30,21 +31,17 @@ public class App {
       String status = request.queryParams("status");
       String age = request.queryParams("age");
 
-      // if ( (ranger_name.equals("") || species.equals("") || location.equals("") || notes.equals("") || threat.equals("")) ||
-      //     ( (threat.equals("yes")) && (status.equals("") || age.equals(""))) ) {
-      //   response.redirect("/alert"); //replace with try and catch?
-      // }
-
-
-      if (request.queryParams("ranger_name").equals("")) {
+      if (request.queryParams("ranger_name").equals("") ||
+          request.queryParams("species").equals("") ||
+          request.queryParams("locations").equals("") ||
+          request.queryParams("notes").equals("")){
         response.redirect("/alert");
-      }
+      } else {
 
       Sighting newSighting = new Sighting(ranger_name, notes, location);
       newSighting.save();
       EndangeredAnimal newAnimal = new EndangeredAnimal(species, newSighting.getId());
       SafeAnimal newSafeAnimal = new SafeAnimal(species, newSighting.getId());
-
 
       if (threat.equals("yes")) {
 
@@ -53,7 +50,7 @@ public class App {
               newAnimal.save();
               newAnimal.setAge(age);
               newAnimal.setStatus(status);
-            } else if ((!threat.equals("yes")) || (!threat.equals("no")) ){
+            } else if ((!threat.equals("yes")) && (!threat.equals("no")) ){
               response.redirect("/alert1");
             }
           }
@@ -64,27 +61,25 @@ public class App {
           } else {
             response.redirect("/alert");
           }
+        }
 
         response.redirect("/");
         return null;
       });
 
+    //error page, redirects to homepage
     get("/alert", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       model.put("template", "templates/alert.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //error page, redirects to homepage
     get("/alert1", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       model.put("template", "templates/alert1.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-    //
-    // get("/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<>();
-    //   //populate w model and logic
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+
   }
 }

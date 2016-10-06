@@ -99,15 +99,4 @@ public class EndangeredAnimal extends Animal {
     }
   }
 
-  // public static EndangeredAnimal findEndangeredAnimal(int sighting_id) {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM animals where sighting_id=:id";
-  //     EndangeredAnimal object = con.createQuery(sql)
-  //       .addParameter("sighting_id", sighting_id)
-  //       .throwOnMappingFailure(false)
-  //       .executeAndFetchFirst(EndangeredAnimal.class);
-  //     return object;
-  //   }
-  // }
-
 }

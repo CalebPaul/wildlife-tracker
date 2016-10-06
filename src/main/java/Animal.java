@@ -48,7 +48,4 @@ public abstract class Animal {
     }
   }
 
-  //try and catch for setting type
-
-
 }

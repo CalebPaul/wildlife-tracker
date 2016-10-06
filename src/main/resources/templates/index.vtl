@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-md-5 offset-1">
-    <h3>Add Sighting:</h3>
+    <h3 class="page-header">Add Sighting:</h3>
     <div class="form">
       <form action="/sighting/new" method="post">
         <div class="form-group">
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
           <label for="species">Species Spotted</label>
-          <input class="form-control" type="text" name="species" value="xspecies">
+          <input class="form-control" type="text" name="species">
         </div>
         <div class="form-group">
           <label for="locations">Location</label>
@@ -39,27 +39,28 @@
     </div>
   </div>
   <div class="col-md-5">
-    <h3>Recorded Animal Sightings:</h3>
+    <h3 class="page-header">Recorded Animal Sightings:</h3>
     #if($sightings.size() > 0)
       <ul class="scroll">
         #foreach($sighting in $sightings)
           <li><h4><strong class="blue">Ranger Name: </strong>$sighting.getName()</h4></li>
-          <li><h6><strong>Timestamp: $sighting.getTimeSpotted()</strong></h6></li>
           <li><h4><strong>Location: </strong> $sighting.getLocation()</h4></li>
+          <li><h6><strong>Entry Time: $sighting.getTimeSpotted()</strong></h6></li>
           <li><h5><strong>Notes: </strong> $sighting.getNotes()</h5></li>
           #foreach($animal in $sighting.getSafeAnimals())
           #if($sighting.getId() == $animal.getSightingId())
+            <li><h5><strong>Species Sighted: </strong>$animal.getSpecies()</h5></li>
             <li><h5><strong class="red">Risk Status: </strong>$animal.getType()</h5></li>
-            <li>------------------------------------------</li>
+            <li class="white">------------------------------------------</li>
             #end
             #end
           #foreach($animal in $sighting.getEndangeredAnimals())
           #if($sighting.getId() == $animal.getSightingId())
+            <li><h5><strong>Species Sighted: </strong>$animal.getSpecies()</h5></li>
             <li><h5 class="red"><strong>Risk Status: </strong><$animal.getType()</h5></li>
-            <li><h5><strong>Notes: </strong>$animal.getSpecies()</h5></li>
             <li><h5><strong>Age: </strong>$animal.getAge()</h5></li>
             <li><h5><strong>Health: </strong>$animal.getStatus()</h5></li>
-            <li>------------------------------------------</li>
+            <li class="white">------------------------------------------</li>
             #end
           #end
         #end

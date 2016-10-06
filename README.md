@@ -11,12 +11,20 @@ _Rangers can add, delete, and update info (location, age, health, time spotted) 
 
 ## Specs
 
-* 1st Spec:
-  - detail on 1st spec.
+* Add Sighting:
+  - Program will store Ranger Name, Notes, Location, and a Timestamp.
+
+* Add Animal:
+  - Program will store Animal Species, endangered/safe status, and health and age approximations.
+
+* View Entries:
+  - Program uses an sql join table command to show relevant sighting and animal info together.
 
 
 ## Known Bugs
 * Program is currently incomplete.
+  - Not all tests are passing currently.
+  - No delete or update functionality currently.
 
 ## Setup
 
