@@ -12,6 +12,7 @@ public class SafeAnimal extends Animal {
   public SafeAnimal(String species, int sighting_id) {
     this.species = species;
     this.type = TYPE_SAFE;
+    this.sighting_id = sighting_id;
   }
 
   public static List<SafeAnimal> all() {
@@ -33,5 +34,14 @@ public class SafeAnimal extends Animal {
       return object;
     }
   }
+
+  // public static string getAnimalSpecies(int id) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT species FROM animals where id=:id";
+  //     SafeAnimal object = con.createQuery(sql)
+  //                            .addParameter("id", id)
+  //                            .executeAndFetchFirst(ADDARGUMENT!)
+  //   }
+  // }
 
 }

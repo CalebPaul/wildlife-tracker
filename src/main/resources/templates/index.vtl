@@ -45,17 +45,17 @@
         #foreach($sighting in $sightings)
           <li><h4><strong>Ranger Name: </strong>$sighting.getName()</h4></li>
           <li><h4><strong>Location: </strong> $sighting.getLocation()</h4></li>
-          <li><h3>Time Spotted: $sighting.getTimeSpotted()</h3></li>
-            <ul>
+          <li><h5>Time Spotted: $sighting.getTimeSpotted()</h5></li>
+            <!-- <ul>
               #if($safe.size() > 0)
               <li>in safe if statement</li>
-                <li><h5><strong>Animal Spotted: </strong>$safe.getSpecies() $endangered.getSpecies()</h5></li>
+                <li><h5><strong>Animal Spotted: </strong>$animals.getSpecies() $endangered.getSpecies()</h5></li>
               #end
               #if($endangered.size() > 0)
               <li>in endangered if statement</li>
                 #thing_to_do
               #end
-            </ul>
+            </ul> -->
           <!-- <li><h5>Time Spotted: $sighting.getTimeSpotted()</h5></li> -->
           <!-- maybe select entire sighting and then use getter for timestamp? -->
           <li>------------------------------------------</li>

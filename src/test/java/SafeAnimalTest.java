@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.time.LocalDateTime;
 
 public class SafeAnimalTest {
-  private Animal dog;
-  private Animal cat;
+  private SafeAnimal dog;
+  private SafeAnimal cat;
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
@@ -35,6 +35,16 @@ public class SafeAnimalTest {
     dog.save();
     cat = SafeAnimal.all().get(0);
     assertEquals(dog.getId(), cat.getId());
+  }
+
+  @Test
+  public void save_savesSightingIdIntoDB_true() {
+    Sighting testSight = new Sighting("Aragorn", "saw hobbits", "middle earth");
+    testSight.save();
+    SafeAnimal bird = new SafeAnimal("avian", testSight.getId());
+    bird.save();
+    SafeAnimal savedBird = SafeAnimal.find(bird.getId());
+    assertEquals(savedBird.getSightingId(), testSight.getId());
   }
 
   @Test

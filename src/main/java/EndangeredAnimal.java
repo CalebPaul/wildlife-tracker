@@ -20,6 +20,7 @@ public class EndangeredAnimal extends Animal {
   public EndangeredAnimal(String species, int sighting_id) {
     this.species = species;
     this.type = TYPE_ENDANGERED;
+    this.sighting_id = sighting_id;
     this.status = status;
     this.age = age;
   }
