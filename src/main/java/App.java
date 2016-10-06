@@ -29,32 +29,47 @@ public class App {
       String threat = request.queryParams("threat");
       String status = request.queryParams("status");
       String age = request.queryParams("age");
+
+      // if ( (ranger_name.equals("") || species.equals("") || location.equals("") || notes.equals("") || threat.equals("")) ||
+      //     ( (threat.equals("yes")) && (status.equals("") || age.equals(""))) ) {
+      //   response.redirect("/alert"); //replace with try and catch?
+      // }
+
+
+      if (request.queryParams("ranger_name").equals("")) {
+        response.redirect("/alert");
+      }
+
       Sighting newSighting = new Sighting(ranger_name, notes, location);
       newSighting.save();
+      EndangeredAnimal newAnimal = new EndangeredAnimal(species, newSighting.getId());
+      newAnimal.save();
 
-      if ( (ranger_name.equals("") || species.equals("") || location.equals("") || notes.equals("") || threat.equals("")) ||
-          ( (threat.equals("yes")) && (status.equals("") || age.equals(""))) ) {
-        response.redirect("/alert"); //replace with try and catch
-      } if (threat.equals("yes")) {
-            //newSighting.save();
-            EndangeredAnimal newAnimal = new EndangeredAnimal(species, newSighting.getId());
-            newAnimal.save();
-            newAnimal.setAge(age);
-            newAnimal.setStatus(status);
-          } if (threat.equals("no")) {
-            //newSighting.save();
-            Animal newAnimal = new SafeAnimal(species, newSighting.getId());
-            newAnimal.save();
+      if (threat.equals("yes")) {
+
+       if (newAnimal.completeSetAge(age) && newAnimal.completeSetStatus(status)) {
+              newAnimal.setAge(age);
+              newAnimal.setStatus(status);
+            } else {
+              response.redirect("/alert");
+            }
           }
 
-      response.redirect("/");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
+      if (threat.equals("no")) {
+
+        } else {
+          response.redirect("/alert");
+        }
+
+        response.redirect("/");
+        return null;
+      });
 
     get("/alert", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       //populate w model and logic
-      response.redirect("/");
+      //response.redirect("/");
+      model.put("template", "templates/alert.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

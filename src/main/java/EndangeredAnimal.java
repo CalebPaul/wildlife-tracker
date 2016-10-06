@@ -35,6 +35,9 @@ public class EndangeredAnimal extends Animal {
 
   public void setAge(String age) {
     this.age = age;
+    if (age.equals("")) {
+      throw new IllegalArgumentException("You must enter age of endangered animal");
+    }
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE animals SET age = :age WHERE id=:id";
       con.createQuery(sql)
@@ -44,7 +47,19 @@ public class EndangeredAnimal extends Animal {
     }
   }
 
+  public boolean completeSetAge(String age){
+    try{
+      this.setAge(age);
+      return true;
+    } catch (IllegalArgumentException exception) {
+      return false;
+    }
+  }
+
   public void setStatus(String status) {
+    if (status.equals("")) {
+      throw new IllegalArgumentException("You must enter status of endangered animal");
+    }
     this.status = status;
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE animals SET status = :status WHERE id=:id";
@@ -52,6 +67,15 @@ public class EndangeredAnimal extends Animal {
          .addParameter("status", status)
          .addParameter("id", id)
          .executeUpdate();
+    }
+  }
+
+  public boolean completeSetStatus(String status){
+    try{
+      this.setStatus(status);
+      return true;
+    } catch (IllegalArgumentException exception) {
+      return false;
     }
   }
 

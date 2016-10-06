@@ -38,7 +38,7 @@ public class EndangeredAnimalTest {
   @Test
   public void save_assignsIdToEndangeredAnimal() {
     sabertooth.save();
-    jackelope = EndangeredAnimal.all().get(0);
+    EndangeredAnimal jackelope = EndangeredAnimal.all().get(0);
     assertEquals(sabertooth.getId(), jackelope.getId());
   }
 
