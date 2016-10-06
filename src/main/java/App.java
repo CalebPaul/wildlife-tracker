@@ -31,10 +31,12 @@ public class App {
       String status = request.queryParams("status");
       String age = request.queryParams("age");
 
-      if (request.queryParams("ranger_name").equals("") ||
-          request.queryParams("species").equals("") ||
-          request.queryParams("locations").equals("") ||
-          request.queryParams("notes").equals("")){
+      if (request.queryParams("ranger_name").equals("")
+        || request.queryParams("species").equals("")
+        || request.queryParams("locations").equals("")
+        || request.queryParams("notes").equals("")
+        || request.queryParams("threat"));
+        {
         response.redirect("/alert");
       } else {
 
