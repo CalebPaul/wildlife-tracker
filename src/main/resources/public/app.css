@@ -27,6 +27,14 @@
   overflow-y: scroll;
 }
 
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
 body {
   background-color: lightgreen;
 }

@@ -5,7 +5,7 @@
 * Constants are used in at least one class. DONE
 * Previous standards are met (see below).
 * Project demonstrates an understanding of concepts covered this week. You can discuss your code and concepts behind it with an instructor using the correct terminology.
-* Project is in a polished, portfolio-ready state.
+* Project is in a polished, portfolio-ready state. DONE
 * Application works as expected.
 
 # Wildlife Tracker
@@ -17,22 +17,22 @@ You have been asked to build an application that allows Rangers to track wildlif
 - name DONE
 ### Endangered Animals
 Due to their dwindling numbers, Rangers must record additional information about EndangeredAnimals:
-- id
-- name
+- id DONE
+- name DONE
 
-- health
-- Use constants to define options like "healthy", "ill", and "okay".
+- health DONE
+- Use constants to define options like "healthy", "ill", and "okay". DONE
 
-- age (an estimated guess by the ranger)
-- Use constants to define options like "newborn", "young", or "adult".
+- age (an estimated guess by the ranger) DONE
+- Use constants to define options like "newborn", "young", or "adult". DONE
 
 ## Each time an animal species of either category is seen, a Sighting must be reported:
 - Sightings
 * When wildlife is spotted, a Ranger submits a form to record a Sighting containing the following:
-* id of Animal or EndangeredAnimal species
-* location
-(Conveyed in any manner you choose ie: "Zone A", "Near the River", "NE Quadrant", or latitude and longitude values are all acceptable.)
-* rangerName
+* id of Animal or EndangeredAnimal species DONE
+* location DONE 
+(Conveyed in any manner you choose ie: "Zone A", "Near the River", "NE Quadrant", or latitude and longitude values are all acceptable.) DONE
+* rangerName DONE
 
 ## Exceptions
 It may take a few days for new Rangers to familiarize themselves with the app. To avoid saving incomplete or invalid records, throw and catch exceptions if Rangers attempt to submit an incomplete form, or misuse the application in any other conceivable fashion.
