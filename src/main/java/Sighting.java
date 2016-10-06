@@ -93,4 +93,22 @@ public class Sighting {
     }
   }
 
+  public List<SafeAnimal> getSafeAnimals() {
+    try(Connection con = DB.sql2o.open()) {
+      String joinQuery = "SELECT * FROM animals WHERE sighting_id=:id AND type = 'safe'";
+      return con.createQuery(joinQuery)
+                .addParameter("id", this.getId())
+                .executeAndFetch(SafeAnimal.class);
+    }
+  }
+
+  public List<EndangeredAnimal> getEndangeredAnimals() {
+    try(Connection con = DB.sql2o.open()) {
+      String joinQuery = "SELECT * FROM animals WHERE sighting_id=:id AND type = 'endangered'";
+      return con.createQuery(joinQuery)
+                .addParameter("id", this.getId())
+                .executeAndFetch(EndangeredAnimal.class);
+    }
+  }
+
 }

@@ -35,13 +35,15 @@ public class SafeAnimal extends Animal {
     }
   }
 
-  // public static string getAnimalSpecies(int id) {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT species FROM animals where id=:id";
-  //     SafeAnimal object = con.createQuery(sql)
-  //                            .addParameter("id", id)
-  //                            .executeAndFetchFirst(ADDARGUMENT!)
-  //   }
-  // }
+  public static SafeAnimal findSafeAnimal(int sighting_id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals where sighting_id=:id";
+      SafeAnimal object = con.createQuery(sql)
+        .addParameter("sighting_id", sighting_id)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(SafeAnimal.class);
+      return object;
+    }
+  }
 
 }

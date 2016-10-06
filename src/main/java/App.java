@@ -13,8 +13,8 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       model.put("sightings", Sighting.all());
-      model.put("safe", SafeAnimal.class);
-      model.put("endangered", EndangeredAnimal.class);
+      model.put("safeAnimals", SafeAnimal.class);
+      model.put("endangeredAnimals", EndangeredAnimal.class);
       //model.put("animals", Animal.class);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
@@ -43,23 +43,27 @@ public class App {
       Sighting newSighting = new Sighting(ranger_name, notes, location);
       newSighting.save();
       EndangeredAnimal newAnimal = new EndangeredAnimal(species, newSighting.getId());
-      newAnimal.save();
+      SafeAnimal newSafeAnimal = new SafeAnimal(species, newSighting.getId());
+
 
       if (threat.equals("yes")) {
 
        if (newAnimal.completeSetAge(age) && newAnimal.completeSetStatus(status)) {
+
+              newAnimal.save();
               newAnimal.setAge(age);
               newAnimal.setStatus(status);
-            } else {
-              response.redirect("/alert");
+            } else if ((!threat.equals("yes")) || (!threat.equals("no")) ){
+              response.redirect("/alert1");
             }
           }
 
       if (threat.equals("no")) {
-
-        } else {
-          response.redirect("/alert");
-        }
+          //newSighting.save();
+          newSafeAnimal.save();
+          } else {
+            response.redirect("/alert");
+          }
 
         response.redirect("/");
         return null;
@@ -67,17 +71,15 @@ public class App {
 
     get("/alert", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
-      //populate w model and logic
-      //response.redirect("/");
       model.put("template", "templates/alert.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get("/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<>();
-    //   //populate w model and logic
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+    get("/alert1", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      model.put("template", "templates/alert1.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
     //
     // get("/", (request, response) -> {
     //   Map<String, Object> model = new HashMap<>();
