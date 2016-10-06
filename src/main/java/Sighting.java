@@ -36,17 +36,6 @@ public class Sighting {
     return times_spotted;
   }
 
-//refactor?
-  // public Object getTimeSpotted() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT times_spotted FROM sightings WHERE id=:id";
-  //     Object time = con.createQuery(sql)
-  //                         .addParameter("id", id)
-  //                         .executeAndFetchFirst(Sighting.class);
-  //     return time;
-  //   }
-  // }
-
   @Override
   public boolean equals(Object otherSighting){
     if (!(otherSighting instanceof Sighting)) {
