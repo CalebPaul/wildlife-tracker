@@ -37,7 +37,7 @@ _Rangers can add, delete, and update info (location, age, health, time spotted) 
 	  `CREATE DATABASE wildlife_tracker;`
 
 * Type in terminal:
-	  `psql wildlife_tracker < media.sql`
+	  `psql wildlife_tracker < wildlifeDB.sql`
 
 * Type in terminal:
 	`\c wildlife_tracker`

@@ -15,7 +15,6 @@ public class App {
       model.put("sightings", Sighting.all());
       model.put("safeAnimals", SafeAnimal.class);
       model.put("endangeredAnimals", EndangeredAnimal.class);
-      //model.put("animals", Animal.class);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -34,11 +33,10 @@ public class App {
       if (request.queryParams("ranger_name").equals("")
         || request.queryParams("species").equals("")
         || request.queryParams("locations").equals("")
-        || request.queryParams("notes").equals("")
-        || request.queryParams("threat"));
+        || request.queryParams("notes").equals(""))
         {
         response.redirect("/alert");
-      } else {
+        } else {
 
       Sighting newSighting = new Sighting(ranger_name, notes, location);
       newSighting.save();
@@ -47,8 +45,7 @@ public class App {
 
       if (threat.equals("yes")) {
 
-       if (newAnimal.completeSetAge(age) && newAnimal.completeSetStatus(status)) {
-
+        if (newAnimal.completeSetAge(age) && newAnimal.completeSetStatus(status)) {
               newAnimal.save();
               newAnimal.setAge(age);
               newAnimal.setStatus(status);
@@ -58,12 +55,11 @@ public class App {
           }
 
       if (threat.equals("no")) {
-          //newSighting.save();
-          newSafeAnimal.save();
-          } else {
-            response.redirect("/alert");
-          }
+        newSafeAnimal.save();
+        } else {
+          response.redirect("/alert");
         }
+      }
 
         response.redirect("/");
         return null;

@@ -33,6 +33,10 @@ public class EndangeredAnimal extends Animal {
     return age;
   }
 
+  public String getType() {
+    return type;
+  }
+
   public void setAge(String age) {
     this.age = age;
     if (age.equals("")) {
@@ -83,7 +87,6 @@ public class EndangeredAnimal extends Animal {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM animals WHERE type='endangered'";
       return con.createQuery(sql)
-                .throwOnMappingFailure(false)
                 .executeAndFetch(EndangeredAnimal.class);
     }
   }

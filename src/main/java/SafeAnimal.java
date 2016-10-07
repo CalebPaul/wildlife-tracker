@@ -15,6 +15,10 @@ public class SafeAnimal extends Animal {
     this.sighting_id = sighting_id;
   }
 
+  public String getType() {
+    return type;
+  }
+
   public static List<SafeAnimal> all() {
     String sql = "SELECT * FROM animals WHERE type='safe'";
     try(Connection con = DB.sql2o.open()) {

@@ -125,8 +125,8 @@ ALTER TABLE ONLY sightings ALTER COLUMN id SET DEFAULT nextval('sightings_id_seq
 --
 
 COPY animals (id, species, type, sighting_id, age, status) FROM stdin;
-1	orcs	safe	0	\N	\N
-2	Spiders	endangered	0	\N	\N
+58	Giant Eagle	endangered	77	young	healthy
+57	Bear	safe	76	\N	\N
 \.
 
 
@@ -134,7 +134,7 @@ COPY animals (id, species, type, sighting_id, age, status) FROM stdin;
 -- Name: animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: calebpaul
 --
 
-SELECT pg_catalog.setval('animals_id_seq', 2, true);
+SELECT pg_catalog.setval('animals_id_seq', 59, true);
 
 
 --
@@ -142,6 +142,8 @@ SELECT pg_catalog.setval('animals_id_seq', 2, true);
 --
 
 COPY sightings (id, ranger_names, notes, times_spotted, locations) FROM stdin;
+76	Walker	I have sweet boots	2016-10-06 15:41:58.124946	Texas
+77	Aragorn	Saw some orcs and hobbits, also!	2016-10-06 15:42:37.452714	Middle Earth
 \.
 
 
@@ -149,7 +151,7 @@ COPY sightings (id, ranger_names, notes, times_spotted, locations) FROM stdin;
 -- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: calebpaul
 --
 
-SELECT pg_catalog.setval('sightings_id_seq', 3, true);
+SELECT pg_catalog.setval('sightings_id_seq', 79, true);
 
 
 --
